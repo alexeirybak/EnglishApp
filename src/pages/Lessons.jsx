@@ -16,7 +16,6 @@ export const Lessons = () => {
     if (!result[chunkIndex]) {
       result[chunkIndex] = [];
     }
-    // Сохраняем исходный индекс урока в элементе урока
     const lessonWithIndex = { ...item, originalIndex: index };
     result[chunkIndex].push(lessonWithIndex);
     return result;
@@ -36,7 +35,7 @@ export const Lessons = () => {
 
   const filteredLessons = groupedLessons.map((chunk) => {
     return chunk.filter((lesson) => {
-      const lessonNumber = lesson.originalIndex + 1; // Используем исходный индекс
+      const lessonNumber = lesson.originalIndex + 1; 
       const lessonTitle = lesson[0].title.toLowerCase();
       const filterValue = filter.toLowerCase();
       return (
@@ -74,7 +73,7 @@ export const Lessons = () => {
               <S.Title2>Уровень {getLevelNameList(chunkIndex + 1)}</S.Title2>
               <S.Lessons>
                 {chunk.map((lesson, index) => {
-                  const lessonNumber = lesson.originalIndex + 1; // Используем исходный индекс
+                  const lessonNumber = lesson.originalIndex + 1;
                   return (
                     <Lesson
                       key={lessonNumber}
