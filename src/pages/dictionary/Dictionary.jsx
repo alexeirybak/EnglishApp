@@ -124,7 +124,7 @@ export const Dictionary = () => {
                 />
               </St.SettingsButton>
             </St.SettingsBlock>
-            <St.TranslationBlock>
+            <St.TranslationBlock $borderVisible={translation !== null && search}>
               {translation !== null && search ? (
                 translation.def.length > 0 ? (
                   translation.def.map((def, defIndex) => (

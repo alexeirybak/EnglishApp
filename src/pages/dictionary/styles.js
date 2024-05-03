@@ -125,7 +125,7 @@ export const TranslationBlock = styled.div`
   row-gap: 20px;
   width: 600px;
   border-radius: 6px;
-  border: 1px solid #eee;
+  border: ${props => props.$borderVisible ? '1px solid #eee' : '1px solid transparent'};
   padding-bottom: 25px;
   @media (max-width: 768px) {
     width: 400px;

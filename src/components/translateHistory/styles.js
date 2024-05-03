@@ -53,8 +53,8 @@ export const RemoveWordButton = styled.button`
 `;
 
 export const DeleteWord = styled.img`
-  height: 24px;
-  max-width: 24px;
+  height: 36px;
+  width: 36px;
   display: block;
 `;
 
