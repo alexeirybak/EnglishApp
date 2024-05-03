@@ -1,17 +1,19 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { lessonsList } from '../../content/lessonList';
 import playIcon from './play.png';
 import stopIcon from './stop.png';
 import * as S from './styles';
+import { TranscriptionContext } from '../../context/transcriptionContext';
 
-export const Phrases = ({ transcription, volume }) => {
+export const Phrases = ({ volume }) => {
   const { id } = useParams();
   const lessonId = parseInt(id);
   const lesson = lessonsList[lessonId - 1];
   const [isSpeakingPhrases, setIsSpeakingPhrases] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentPhraseId, setCurrentPhraseId] = useState(null);
+  const { transcription } = useContext(TranscriptionContext);
   const audioRef = useRef(null);
   const [isFlippedArray, setIsFlippedArray] = useState(
     Array(transcription.length).fill(false),

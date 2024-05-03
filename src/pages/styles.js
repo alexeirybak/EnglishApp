@@ -39,7 +39,7 @@ export const ContentList = styled.ul`
   row-gap: 20px;
   text-align: center;
   justify-content: space-around;
-  padding-bottom: 30px;
+  padding-bottom: 90px;
 `;
 
 export const ContentListItem = styled.li`

@@ -88,6 +88,9 @@ export const TranslateHeading = styled.div`
     justify-content: flex-start;
     justify-items: start;
   }
+  @media (max-width: 320px) {
+    justify-items: center;
+  }
 `;
 
 export const TranslateHeadingWord = styled.div`
@@ -115,6 +118,9 @@ export const WordPos = styled.p`
 export const ListenButton = styled.button`
   display: flex;
   justify-content: flex-end;
+  @media (max-width: 320px) {
+    margin: 0 auto;
+  }
 `;
 
 export const Play = styled.img`
@@ -152,10 +158,20 @@ export const TranslateWordMeanItem = styled.li`
       background-color: var(--page-bg-item);
     `}
   @media (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
     justify-items: start;
   }
+  @media (max-width: 320px) {
+    grid-template-columns: 1fr;
+  }
 `;
+
+export const TrItemText = styled.p`
+  @media (max-width: 320px) {
+    margin: 0 auto;
+  }
+`;
+
+export const TranslateWordMeanItemBlock = styled.div``;
 
 export const TranslateWordHeadingTranscription = styled.div`
   display: inline-block;
@@ -164,6 +180,9 @@ export const TranslateWordHeadingTranscription = styled.div`
   padding-right: 5px;
   @media (max-width: 768px) {
     margin-left: auto;
+  }
+  @media (max-width: 320px) {
+    margin: auto;
   }
 `;
 
@@ -174,6 +193,7 @@ export const ReadMore = styled.button`
   color: #ccc;
   font-size: 1rem;
   margin-left: auto;
+  min-width: 83px;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
@@ -193,6 +213,9 @@ export const ReadMore = styled.button`
       background-color: var(--page-bg-button);
       color: #ccc;
     }
+  }
+  @media (max-width: 320px) {
+    margin: 0 auto;
   }
 `;
 

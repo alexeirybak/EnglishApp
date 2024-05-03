@@ -169,7 +169,7 @@ export const Dictionary = () => {
                               $isLatin={/^[a-zA-Z\s-]*$/.test(trItem.text)}
                               $isEven={trIndex % 2 === 0}
                             >
-                              {trItem.text}{' '}
+                              <St.TrItemText>{trItem.text}</St.TrItemText>
                               {trItem.ts && (
                                 <St.TranslateWordHeadingTranscription>
                                   [{trItem.ts}]

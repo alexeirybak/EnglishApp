@@ -47,11 +47,7 @@ export const InputWord = styled.input`
   border-radius: 6px 0 0 6px;
   width: 260px;
   @media (max-width: 425px) {
-    font-size: 1rem;
-    width: 160px;
-  }
-  @media (max-width: 240px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
     width: 160px;
   }
 `;
@@ -158,15 +154,17 @@ export const Translation = styled.div`
 export const TranslateHeading = styled.div`
   margin-top: 15px;
   margin-bottom: 15px;
-  font-size: 1.2rem;
   display: grid;
-  align-items: center;
+  row-gap: 8px;
   grid-template-columns: ${(props) =>
     props.$isLatin ? '2fr 2fr 1fr' : '1fr 1fr'};
-  row-gap: 8px;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    justify-content: flex-start;
     justify-items: start;
+  }
+  @media (max-width: 320px) {
+    justify-items: center;
   }
 `;
 
@@ -181,8 +179,9 @@ export const TranslateHeadingWord = styled.div`
 
 export const WordPos = styled.p`
   font-style: italic;
-  word-break: break-word;
+  font-size: 1.3rem;
   color: var(--text-color);
+  font-size: 1.2rem;
   font-weight: normal;
   ${({ $isLatin }) =>
     $isLatin &&
@@ -191,9 +190,6 @@ export const WordPos = styled.p`
       justify-content: flex-end;
 }
     `}
-  @media (max-width: 768px) {
-    margin-left: auto;
-  }
 `;
 
 export const ListenButton = styled.button`
@@ -242,8 +238,16 @@ export const TranslateWordMeanItem = styled.li`
     `}
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
     justify-items: start;
+  }
+  @media (max-width: 320px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const TrItemText = styled.p`
+  @media (max-width: 320px) {
+    margin: 0 auto;
   }
 `;
 
@@ -264,6 +268,7 @@ export const ReadMore = styled.button`
   color: #ccc;
   font-size: 1rem;
   margin-left: auto;
+  min-width: 83px;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
@@ -283,6 +288,9 @@ export const ReadMore = styled.button`
       background-color: var(--page-bg-button);
       color: #ccc;
     }
+  }
+  @media (max-width: 320px) {
+    margin: 0 auto;
   }
 `;
 

@@ -35,13 +35,6 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  html,
-  body {
-    font-size: 13px;
-  }
-}
-
 #root {
   display: flex;
   flex-direction: column;
