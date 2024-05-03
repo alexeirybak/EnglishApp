@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { wordsList } from '../../content/wordsList';
 import playIcon from './play.png';
@@ -6,13 +6,13 @@ import stopIcon from './stop.png';
 import toLeft from './toLeft.png';
 import toRight from './toRight.png';
 import * as S from './styles';
+import { TranscriptionContext } from '../../context/transcriptionContext';
 
 const countElementsUpto = (i, list) => {
   return list.slice(0, i).reduce((acc, sublist) => acc + sublist.length, 0);
 };
 
 export const Words = ({
-  transcription,
   currentSlide,
   setCurrentSlide,
   volume,
@@ -31,6 +31,7 @@ export const Words = ({
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const slideRef = useRef(null);
+  const {transcription} = useContext(TranscriptionContext);
   
   const totalNumberOfWordsInAllLessons = wordsList.reduce(
     (acc, current) => acc + current.length,

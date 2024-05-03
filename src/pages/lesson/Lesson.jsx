@@ -11,10 +11,7 @@ import { ToTop } from '../../components/toTop/toTop';
 import * as S from './styles';
 import './styles.css';
 
-export const Lesson = ({
-  currentLesson,
-  transcription,
-}) => {
+export const Lesson = () => {
   const { id } = useParams();
   const [isWords, setIsWords] = useState(false);
   const [isTheory, setIsTheory] = useState(false);
@@ -25,7 +22,7 @@ export const Lesson = ({
   const [numberPhrase, setNumberPhrase] = useState(0);
   const [phraseCounter, setPhraseCounter] = useState(0);
   const [volume, setVolume] = useState(0.5);
-  const lessonId = id ? parseInt(id) : currentLesson;
+  const lessonId = id ? +id : 1;
   const lesson = lessonsList[lessonId - 1];
   const words = wordsList[lessonId - 1];
   const [wordIndex, setWordIndex] = useState(0);
@@ -72,7 +69,6 @@ export const Lesson = ({
       <S.WordsAcc $isWords={isWords}>
         {words && (
           <Words
-            transcription={transcription}
             setCurrentSlide={setCurrentSlide}
             currentSlide={currentSlide}
             volume={volume}
@@ -96,10 +92,7 @@ export const Lesson = ({
         {isPhrases ? 'Закрыть фразы' : 'Открыть фразы'}
       </S.BtnPhrases>
       <S.PhrasesAcc $isPhrases={isPhrases}>
-        <Phrases
-          transcription={transcription}
-          volume={volume}
-        />
+        <Phrases volume={volume} />
       </S.PhrasesAcc>
       <S.BtnPlayer $isPlayer={isPlayer} onClick={handleTogglePlayer}>
         {isPlayer ? 'Закрыть плеер' : 'Открыть плеер'}
@@ -118,7 +111,7 @@ export const Lesson = ({
       <S.Vocabulary>
         Пройдено: {((id / wordsList.length) * 100).toFixed(1)}% уроков
       </S.Vocabulary>
-      <ToTop onClick={handleScrollToTop}/>
+      <ToTop onClick={handleScrollToTop} />
     </S.Lesson>
   );
 };

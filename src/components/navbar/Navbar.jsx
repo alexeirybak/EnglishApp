@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { TranscriptionContext } from '../../context/transcriptionContext';
 import { NavLink } from 'react-router-dom';
 import { BtnMode } from '../btnMode/BtnMode';
 import settingsIcon from './settings.png';
 import logo from './logo.png';
 import * as S from './styles';
 
-export const Navbar = ({ transcription, setTranscription }) => {
+export const Navbar = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [settingsVisible, setSettingsVisible] = useState(false);
+  const { transcription, setTranscription } = useContext(TranscriptionContext);
+  
   const menuAppear = () => {
     setMenuVisible(!menuVisible);
     setSettingsVisible(false);

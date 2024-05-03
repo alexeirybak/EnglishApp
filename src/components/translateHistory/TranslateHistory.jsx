@@ -103,7 +103,7 @@ export const TranslationHistory = ({
                                 $isLatin={/^[a-zA-Z\s-]*$/.test(trItem.text)}
                                 $isEven={trIndex % 2 === 0}
                               >
-                                {trItem.text}{' '}
+                                <S.TrItemText>{trItem.text}</S.TrItemText>
                                 {trItem.ts && (
                                   <S.TranslateWordHeadingTranscription>
                                     [{trItem.ts}]
@@ -128,9 +128,7 @@ export const TranslationHistory = ({
                               </S.TranslateWordMeanItem>
                               {openCards[cardId] && (
                                 <S.CardSyn>
-                                  {trItem.mean && (
-                                    <p>Другие значения</p>
-                                  )}
+                                  {trItem.mean && <p>Другие значения</p>}
                                   <S.CardSynBlock>
                                     {trItem.syn && (
                                       <S.CardSynText>

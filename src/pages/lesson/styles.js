@@ -6,7 +6,10 @@ export const Lesson = styled.div`
   position: relative;
   min-height: 100vh;
   padding: 100px 20px 150px;
-  max-width: 1200px;
+  width: 80%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const HeaderLesson = styled.h1`
