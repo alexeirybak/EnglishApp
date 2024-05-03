@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const Nav = styled.nav`
   height: 65px;
@@ -149,38 +149,52 @@ export const MenuLink = styled(NavLink)`
 `;
 
 export const ForBtn = styled.div`
-  padding-top: 30px;
   display: flex;
   flex-direction: row;
-  column-gap: 20px;
   align-items: center;
-  font-size: 1rem;
+  justify-content: center;
+  column-gap: 10px;
+  border-radius: 10px;
+  height: 60px;
+  width: 18rem;
+  background-color: #012169;
+  color: #fff;
+  margin-top: 50px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    width: 200px;
+  }
 `;
 
-export const ButtonsTop = styled.button`
-  background-color: #c8102e;
+export const ButtonTranscription = styled.button`
+  width: 18rem;
+  color: #fff;
+  margin-top: 40px;
+  background-color: #012169;
   border-radius: 10px;
   color: #fff;
-  height: 70px;
-  width: 130px;
-  @media (max-width: 768px) {
-    width: 200px;
-    height: 40px;
-    font-size: 1rem;
+  height: 60px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  &:hover {
+    background-color: #555;
+    color: #eee;
   }
-`;
 
-export const ButtonTranscription = styled(ButtonsTop)`
-  width: 18rem;
-  background-color: var(--page-bg);
-  color: var(--text-color);
-  border: 1px solid var(--text-color);
-  margin-top: 40px;
   @media (max-width: 768px) {
     width: 200px;
-  }
-  @media (max-width: 325px) {
-    width: 160px;
+    font-size: 1rem;
+    &:hover {
+      background-color: #012169;
+    }
+
+    &:active {
+      background-color: #555;
+    }
   }
 `;
 

@@ -71,7 +71,7 @@ export const BtnWords = styled.button`
   }
 
   @media (max-width: 425px) {
-    width: 140px;
+    width: 180px;
     font-size: 1rem;
   }
 `;
