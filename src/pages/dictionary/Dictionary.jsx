@@ -1,17 +1,16 @@
 import { useState, useRef } from 'react';
 import { TranslationHistory } from '../../components/translateHistory/TranslateHistory';
 import { ToTop } from '../../components/toTop/toTop';
-import { translatePartOfSpeech } from '../../helpers/translatePos';
 import {
   handleValidateWordEn,
   handleValidateWordRu,
 } from '../../helpers/validateWord';
 import { fetchTranslation } from '../../api/apiDictionary';
 import { playAudio } from '../../helpers/soundWord';
+import { TranslationDef } from '../../components/translationDef/TranslationDef';
 import iconSearch from './icon-search.png';
 import iconChange from './change.png';
 import iconDelete from './icon-delete.png';
-import iconPlay from './play.png';
 import * as S from '../styles';
 import * as St from './styles';
 
@@ -23,15 +22,8 @@ export const Dictionary = () => {
   const [errorWord, setErrorWord] = useState(null);
   const [translationHistory, setTranslationHistory] = useState([]);
   const [saveTranslation, setSaveTranslation] = useState(false);
-  const [openCards, setOpenCards] = useState({});
   const inputRef = useRef(null);
-
-  const toggleCard = (cardId) => {
-    setOpenCards((prevOpenCards) => ({
-      ...prevOpenCards,
-      [cardId]: !prevOpenCards[cardId],
-    }));
-  };
+  const [openCards, setOpenCards] = useState({});
 
   const saveTranslationToHistory = (translation) => {
     setTranslationHistory((prevHistory) => {
@@ -132,159 +124,17 @@ export const Dictionary = () => {
                 />
               </St.SettingsButton>
             </St.SettingsBlock>
-            <St.TranslationBlock>
+            <St.TranslationBlock $borderVisible={translation !== null && search}>
               {translation !== null && search ? (
                 translation.def.length > 0 ? (
                   translation.def.map((def, defIndex) => (
-                    <St.Translation key={defIndex}>
-                      <St.TranslateHeading
-                        $isLatin={/^[a-zA-Z\s-]*$/.test(def.text)}
-                      >
-                        <St.TranslateHeadingWord>
-                          {def.text}
-                          {def.ts && (
-                            <St.TranslateWordHeadingTranscription>
-                              [{def.ts}]
-                            </St.TranslateWordHeadingTranscription>
-                          )}
-                        </St.TranslateHeadingWord>
-                        <St.WordPos $isLatin={!/^[a-zA-Z\s-]*$/.test(def.text)}>
-                          {translatePartOfSpeech(def.pos)}{' '}
-                        </St.WordPos>{' '}
-                        {/^[a-zA-Z\s-]*$/.test(def.text) && (
-                          <St.ListenButton onClick={() => playAudio(def.text)}>
-                            <St.Play src={iconPlay} alt='Прослушать' />
-                          </St.ListenButton>
-                        )}
-                      </St.TranslateHeading>
-
-                      {def.tr.map((trItem, trIndex) => {
-                        const cardId = `${trIndex}-def-${defIndex}-tr-${trIndex}`;
-                        return (
-                          <St.OpenBlock
-                            key={cardId}
-                            $isOpen={openCards[cardId]}
-                          >
-                            <St.TranslateWordMeanItem
-                              $isLatin={/^[a-zA-Z\s-]*$/.test(trItem.text)}
-                              $isEven={trIndex % 2 === 0}
-                            >
-                              <St.TrItemText>{trItem.text}</St.TrItemText>
-                              {trItem.ts && (
-                                <St.TranslateWordHeadingTranscription>
-                                  [{trItem.ts}]
-                                </St.TranslateWordHeadingTranscription>
-                              )}
-                              {/^[a-zA-Z\s-]*$/.test(trItem.text) && (
-                                <St.ListenButton
-                                  onClick={() => playAudio(trItem.text)}
-                                >
-                                  <St.Play src={iconPlay} alt='Прослушать' />
-                                </St.ListenButton>
-                              )}
-                              {(trItem.mean || trItem.syn) && (
-                                <St.ReadMore onClick={() => toggleCard(cardId)}>
-                                  {openCards[cardId] ? 'Свернуть' : 'Подробнее'}
-                                </St.ReadMore>
-                              )}
-                            </St.TranslateWordMeanItem>
-                            {openCards[cardId] && (
-                              <St.CardSyn>
-                                {trItem.mean.length > 0 && (
-                                  <p>Другие значения</p>
-                                )}
-                                <St.CardSynBlock>
-                                  {trItem.syn && (
-                                    <St.CardSynText>
-                                      <St.SynMark>
-                                        {trItem.syn.some((synItem) =>
-                                          /^[а-яА-Я\s-]*$/.test(synItem.text),
-                                        )
-                                          ? 'на русском:'
-                                          : 'на английском:'}
-                                      </St.SynMark>
-                                      <St.SynBlockText>
-                                        {trItem.syn.map((synItem, synIndex) => (
-                                          <St.SynBlock
-                                            key={`${trIndex}-def-${defIndex}-tr-${trIndex}-syn-${synIndex}`}
-                                          >
-                                            <St.SynMother>
-                                              {synItem.text}
-                                            </St.SynMother>
-                                            {synItem.ts && (
-                                              <St.TranslateWordHeadingTranscription>
-                                                [{trItem.ts}]
-                                              </St.TranslateWordHeadingTranscription>
-                                            )}
-                                            {/^[a-zA-Z\s-]*$/.test(
-                                              synItem.text,
-                                            ) && (
-                                              <St.ListenButton
-                                                onClick={() =>
-                                                  playAudio(synItem.text)
-                                                }
-                                              >
-                                                <St.Play
-                                                  src={iconPlay}
-                                                  alt='Прослушать'
-                                                />
-                                              </St.ListenButton>
-                                            )}
-                                          </St.SynBlock>
-                                        ))}
-                                      </St.SynBlockText>
-                                    </St.CardSynText>
-                                  )}
-                                  {trItem.mean && (
-                                    <St.CardSynText>
-                                      {trItem.mean.some((meanItem) =>
-                                        /^[а-яА-Я\s-]*$/.test(meanItem.text),
-                                      ) ? (
-                                        <St.SynMark>на русском</St.SynMark>
-                                      ) : (
-                                        <St.SynMark>на английском</St.SynMark>
-                                      )}
-                                      <St.SynBlockText>
-                                        {trItem.mean.map(
-                                          (meanItem, meanIndex) => (
-                                            <St.SynBlock
-                                              key={`${trIndex}-def-${defIndex}-tr-${trIndex}-mean-${meanIndex}`}
-                                            >
-                                              <St.SynForeign>
-                                                {meanItem.text}
-                                              </St.SynForeign>
-                                              {meanItem.ts && (
-                                                <St.TranslateWordHeadingTranscription>
-                                                  [{meanItem.ts}]
-                                                </St.TranslateWordHeadingTranscription>
-                                              )}
-                                              {/^[a-zA-Z\s-]*$/.test(
-                                                meanItem.text,
-                                              ) && (
-                                                <St.ListenButton
-                                                  onClick={() =>
-                                                    playAudio(meanItem.text)
-                                                  }
-                                                >
-                                                  <St.Play
-                                                    src={iconPlay}
-                                                    alt='Прослушать'
-                                                  />
-                                                </St.ListenButton>
-                                              )}
-                                            </St.SynBlock>
-                                          ),
-                                        )}
-                                      </St.SynBlockText>
-                                    </St.CardSynText>
-                                  )}
-                                </St.CardSynBlock>
-                              </St.CardSyn>
-                            )}
-                          </St.OpenBlock>
-                        );
-                      })}
-                    </St.Translation>
+                    <TranslationDef
+                    key={`${defIndex}-def`}
+                    index={defIndex}
+                    def={def}
+                    openCards={openCards}
+                    setOpenCards={setOpenCards}
+                    />
                   ))
                 ) : (
                   <St.TranslateWarning>

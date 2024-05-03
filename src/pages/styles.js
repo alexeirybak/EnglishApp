@@ -20,7 +20,7 @@ export const Container = styled.div`
 `;
 
 export const Title1 = styled.h1`
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.3;
@@ -39,7 +39,7 @@ export const ContentList = styled.ul`
   row-gap: 20px;
   text-align: center;
   justify-content: space-around;
-  padding-bottom: 90px;
+  padding-bottom: 60px;
 `;
 
 export const ContentListItem = styled.li`
@@ -51,9 +51,9 @@ export const ContentListItem = styled.li`
 `;
 
 export const Title2 = styled.h2`
-  margin-top: 20px;
-  margin-bottom: 30px;
-  font-size: 1.5rem;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.3;
   text-align: center;
@@ -61,12 +61,12 @@ export const Title2 = styled.h2`
 
 export const Paragraph = styled.p`
   margin-top: 0.5rem;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 
 export const ParagraphMethod = styled.p`
   margin-top: 0.5rem;
-  margin-bottom: 45px;
+  margin-bottom: 30px;
 `;
 
 export const Contacts = styled.a`
@@ -124,15 +124,10 @@ export const HeaderWrapper = styled.div`
 
 export const HeaderTitle = styled.h1`
   margin-bottom: 20px;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.4;
   color: var(--text-color);
-
-  strong {
-    font-size: 60px;
-    font-weight: 700;
-  }
 
   em {
     font-style: normal;
@@ -140,10 +135,7 @@ export const HeaderTitle = styled.h1`
   }
 
   @media (max-width: 620px) {
-    font-size: 30px;
-    strong {
-      font-size: 40px;
-    }
+    font-size: 2rem;
   }
 `;
 

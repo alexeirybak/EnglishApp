@@ -9,7 +9,7 @@ export const DarkModeButton = styled.button`
   height: 26px;
   padding: 5px;
   border-radius: 50px;
-  background-color: #ccc;
+  background-color: #999;
   cursor: pointer;
 
   &::before {

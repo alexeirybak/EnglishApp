@@ -52,7 +52,7 @@ export const ButtonsTop = styled.button`
     font-size: 1rem;
   }
 
-  @media (max-width: 325px) {
+  @media (max-width: 320px) {
     width: 60px;
   }
 `;
