@@ -8,7 +8,6 @@ export const Footer = styled.footer`
   background-color: var(--footer-bg);
   color: var(--footer-text);
   border: 1px solid var(--nav-border);
-  position: absolute;
   bottom: 0;
   @media (max-width: 768px) {
     font-size: 0.5rem;

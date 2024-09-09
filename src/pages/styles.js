@@ -5,7 +5,7 @@ export const Section = styled.main`
   background-color: var(--page-bg);
   color: var(--text-color);
   opacity: 0.93;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   padding-bottom: 100px;
   width: 100%;
 `;
@@ -61,12 +61,12 @@ export const Title2 = styled.h2`
 
 export const Paragraph = styled.p`
   margin-top: 0.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 `;
 
 export const ParagraphMethod = styled.p`
   margin-top: 0.5rem;
-  margin-bottom: 30px;
+  margin-bottom: 5rem;
 `;
 
 export const Contacts = styled.a`
